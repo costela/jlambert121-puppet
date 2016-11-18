@@ -1,10 +1,17 @@
 <!-- Managed by puppet - do not modify -->
 <configuration debug="false" scan="true">
-  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-    <file>/var/log/puppetlabs/puppetserver/puppetserver-access.log</file>
-    <encoder>
-        <pattern>%h %l %u %user %date "%r" %s %b %h %a %localPort %D</pattern>
-    </encoder>
-  </appender>
-  <appender-ref ref="FILE" />
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file><%= @log_dir %>/<%= @log_access_file %></file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern><%= @log_dir %>/puppetserver-access-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize><%= @log_file_max_size %></maxFileSize>
+            <maxHistory><%= @log_file_max_days %></maxHistory>
+            <totalSizeCap><%= @log_max_total_size %></totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%h %l %u [%t] "%r" %s %b "%i{Referer}" "%i{User-Agent}" %D</pattern>
+        </encoder>
+    </appender>
+    <appender-ref ref="FILE" />
 </configuration>

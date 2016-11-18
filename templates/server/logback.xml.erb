@@ -2,15 +2,21 @@
 <configuration scan="true">
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d %-5p [%c{2}] %m%n</pattern>
+            <pattern>%d %-5p [%t] [%c{2}] %m%n</pattern>
         </encoder>
     </appender>
 
-    <appender name="F1" class="ch.qos.logback.core.FileAppender">
+    <appender name="F1" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file><%= @log_dir %>/<%= @log_file %></file>
         <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern><%= @log_dir %>/puppetserver-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize><%= @log_file_max_size %></maxFileSize>
+            <maxHistory><%= @log_file_max_days %></maxHistory>
+            <totalSizeCap><%= @log_max_total_size %></totalSizeCap>
+        </rollingPolicy>
         <encoder>
-            <pattern>%d %-5p [%c{2}] %m%n</pattern>
+            <pattern>%d %-5p [%t] [%c{2}] %m%n</pattern>
         </encoder>
     </appender>
 

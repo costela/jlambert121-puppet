@@ -24,6 +24,10 @@ class puppet::params {
   $server_java_opts = '-Xms2g -Xmx2g'
   $server_log_dir = '/var/log/puppetlabs/puppetserver'
   $server_log_file = 'puppetserver.log'
+  $server_log_access_file = 'puppetserver-access.log'
+  $server_log_file_max_size = '200MB'
+  $server_log_file_max_days = '90'
+  $server_log_max_total_size = '1GB'
   $server_reports = undef
   $server_version = 'latest'
   $firewall = false
