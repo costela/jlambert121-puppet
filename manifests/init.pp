@@ -31,6 +31,7 @@ class puppet (
   String                                       $server_log_file_max_days  = $::puppet::params::server_log_file_max_days,
   String                                       $server_log_max_total_size = $::puppet::params::server_log_max_total_size,
   Optional[Array[String]]                      $server_reports            = $::puppet::params::server_reports,
+  Optional[Array[String]]                      $server_client_whitelist   = $::puppet::params::server_client_whitelist,
   String                                       $server_version            = $::puppet::params::server_version,
   Boolean                                      $firewall                  = $::puppet::params::firewall,
   Integer                                      $jruby_instances           = $::puppet::params::jruby_instances,
