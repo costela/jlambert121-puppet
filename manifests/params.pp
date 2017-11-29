@@ -29,7 +29,7 @@ class puppet::params {
   $server_log_file_max_days = '90'
   $server_log_max_total_size = '1GB'
   $server_reports = undef
-  $server_client_whitelist = undef
+  $server_client_whitelist = []
   $server_version = 'latest'
   $firewall = false
   $jruby_instances = $::processors[count]-1

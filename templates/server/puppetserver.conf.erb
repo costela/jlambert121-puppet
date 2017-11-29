@@ -52,13 +52,9 @@ profiler: {
 
 # Settings related to the puppet-admin HTTP API
 puppet-admin: {
-<% if @client_whitelist -%>
     client-whitelist: [
     <% @client_whitelist.each do |client| -%>
         <%= client %>,
     <% end -%>
     ]
-<% else -%>
-    client-whitelist: []
-<% end -%>
 }
